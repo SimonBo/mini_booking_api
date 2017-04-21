@@ -46,6 +46,9 @@ GEM
     erubis (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
+      railties (>= 3.0.0)
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -144,7 +147,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  factory_girl
+  factory_girl_rails (~> 4.0)
   jsonapi-resources
   listen (~> 3.0.5)
   pg (~> 0.18)

@@ -42,4 +42,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jsonapi-resources'
-gem 'factory_girl'
+gem "factory_girl_rails", "~> 4.0"
