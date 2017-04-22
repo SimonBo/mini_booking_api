@@ -9,7 +9,8 @@ RSpec.describe Booking, type: :model do
 
   describe '#booking_for_at_least_one_night' do
     it 'is valid if the booking is for at least one night' do
-      booking = build :booking, start_at: Time.current, end_at: 1.day.from_now
+      rental = create :rental, daily_rate: 100
+      booking = build :booking, start_at: Time.current, end_at: 1.day.from_now, price: 100, rental: rental
       expect(booking).to be_valid
     end
 
