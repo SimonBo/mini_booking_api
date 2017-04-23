@@ -48,3 +48,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jsonapi-resources'
 gem "factory_girl_rails", "~> 4.0"
 gem 'faker'
+gem 'jsonapi-utils', '~> 0.6.0.beta'
