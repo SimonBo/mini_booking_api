@@ -70,68 +70,68 @@ RSpec.describe 'Rentals', type: :request do
             'daily-rate': 1000
           }
         }
-        }.to_json
-        post api_v1_rentals_path, params: params, headers: headers
+      }.to_json
+      post api_v1_rentals_path, params: params, headers: headers
 
-        expect(response.status).to eq(201)
-        expect(response.body).to be_json_api_response_for('rentals')
-      end
+      expect(response.status).to eq(201)
+      expect(response.body).to be_json_api_response_for('rentals')
+    end
 
-      it 'responds with errors' do
-        params = {
-          data: {
-            type: 'rentals',
-            attributes: {
-            }
+    it 'responds with errors' do
+      params = {
+        data: {
+          type: 'rentals',
+          attributes: {
           }
-          }.to_json
-          post api_v1_rentals_path, params: params, headers: headers
+        }
+      }.to_json
+      post api_v1_rentals_path, params: params, headers: headers
 
-          expect(response.status).to eq(422)
-          expect(response.body).to have_jsonapi_errors_for('/data/attributes/name')
-        end
-      end
+      expect(response.status).to eq(422)
+      expect(response.body).to have_jsonapi_errors_for('/data/attributes/name')
+    end
+  end
 
-      describe 'PUT update' do
-        it 'updates the resource' do
-          params = {
-            data: {
-              type: 'rentals',
-              id: rental.id,
-              attributes: {
-                'daily-rate': 1000
-              }
-            }
-            }.to_json
+  describe 'PUT update' do
+    it 'updates the resource' do
+      params = {
+        data: {
+          type: 'rentals',
+          id: rental.id,
+          attributes: {
+            'daily-rate': 1000
+          }
+        }
+      }.to_json
 
-            put api_v1_rental_path(rental), params: params, headers: headers
-            expect(response.status).to eq(200)
-            expect(rental.reload.daily_rate).to eq 1000
-            expect(response.body).to be_json_api_response_for('rentals')
-          end
+      put api_v1_rental_path(rental), params: params, headers: headers
+      expect(response.status).to eq(200)
+      expect(rental.reload.daily_rate).to eq 1000
+      expect(response.body).to be_json_api_response_for('rentals')
+    end
 
-          it 'responds with errors' do
-            params = {
-              data: {
-                type: 'rentals',
-                id: rental.id,
-                attributes: {
-                  'daily-rate': nil
-                }
-              }
-              }.to_json
-              put api_v1_rental_path(rental), params: params, headers: headers
+    it 'responds with errors' do
+      params = {
+        data: {
+          type: 'rentals',
+          id: rental.id,
+          attributes: {
+            'daily-rate': nil
+          }
+        }
+      }.to_json
+      put api_v1_rental_path(rental), params: params, headers: headers
 
-              expect(response.status).to eq(422)
-              expect(response.body).to have_jsonapi_errors_for('/data/attributes/daily-rate')
-            end
-          end
+      expect(response.status).to eq(422)
+      expect(response.body).to have_jsonapi_errors_for('/data/attributes/daily-rate')
+    end
+  end
 
-          describe '#DELETE destroy' do
-            it 'deletes the resource' do
-              delete api_v1_rental_path(rental), params: {}, headers: headers
-              expect(response.status).to eq(204)
-              expect(Rental.count).to eq 0
-            end
-          end
-        end
+  describe '#DELETE destroy' do
+    it 'deletes the resource' do
+      delete api_v1_rental_path(rental), params: {}, headers: headers
+      expect(response.status).to eq(204)
+      expect(Rental.count).to eq 0
+    end
+  end
+end

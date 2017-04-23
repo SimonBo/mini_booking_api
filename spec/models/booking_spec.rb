@@ -7,6 +7,11 @@ RSpec.describe Booking, type: :model do
   it { should validate_presence_of(:price) }
   it { should validate_presence_of(:rental_id) }
 
+  it 'has a valid factory' do
+    booking = build :booking
+    expect(booking).to be_valid
+  end
+
   describe '#booking_for_at_least_one_night' do
     it 'is valid if the booking is for at least one night' do
       rental = create :rental, daily_rate: 100
