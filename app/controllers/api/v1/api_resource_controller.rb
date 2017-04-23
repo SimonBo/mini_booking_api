@@ -1,5 +1,8 @@
 class Api::V1::ApiResourceController < JSONAPI::ResourceController
+  include JSONAPI::Utils
+
   before_action :authenticate
+  rescue_from ActiveRecord::RecordNotFound, with: :jsonapi_render_not_found
 
   private
 
@@ -13,6 +16,6 @@ class Api::V1::ApiResourceController < JSONAPI::ResourceController
   end
 
   def render_unauthorized
-    render json: 'Bad credentials', status: 401
+    jsonapi_render_errors json: [{ title: 'Bad credentials' }], status: 401
   end
 end
