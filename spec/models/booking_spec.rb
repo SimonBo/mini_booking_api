@@ -46,7 +46,7 @@ RSpec.describe Booking, type: :model do
       old_booking = create :booking, rental: rental, start_at: 10.days.ago, end_at: 4.days.ago, price: 600
       new_booking = build :booking, rental: rental, start_at: 5.days.ago, end_at: 1.day.ago, price: 400
       expect(new_booking).not_to be_valid
-      expect(new_booking.errors[:rental_id].size).to eq 1
+      expect(new_booking.errors[:end_at].size).to eq 1
     end
 
     it 'is valid if the dates dont overlap with other bookings of given rental' do

@@ -25,7 +25,7 @@ class Booking < ApplicationRecord
   def bookings_dont_overlap
     booking_count = self.new_record? ? 0 : 1
     if rental and date_range and rental.bookings.where(start_at: date_range).or(rental.bookings.where(end_at: date_range)).count > booking_count
-      errors.add(:rental_id, 'has already been booked for that time period')
+      errors.add(:end_at, 'has already been booked for that time period')
     end
   end
 
