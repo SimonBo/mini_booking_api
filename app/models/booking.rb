@@ -2,6 +2,7 @@ class Booking < ApplicationRecord
   belongs_to :rental
 
   validates :start_at, :end_at, :client_email, :price, :rental_id, presence: true
+  validates_email_format_of :client_email, :message => 'is not a valid email'
   validate :booking_for_at_least_one_night
   validate :price_must_be_valid
   validate :bookings_dont_overlap
