@@ -1,5 +1,6 @@
 class Api::V1::ApiResourceController < JSONAPI::ResourceController
   include JSONAPI::Utils
+  include Concerns::JwtHandling
 
   before_action :authenticate
   rescue_from ActiveRecord::RecordNotFound, with: :jsonapi_render_not_found

@@ -40,6 +40,8 @@ RSpec.describe 'Bookings', type: :request do
 
   describe 'POST create' do
     it 'creates a booking' do
+      user = create :user
+
       params ={
         data: {
           type: 'bookings',
@@ -54,6 +56,12 @@ RSpec.describe 'Bookings', type: :request do
               data: {
                 type: 'rentals',
                 id: rental.id
+              }
+            },
+            user: {
+              data: {
+                type: 'users',
+                id: user.id
               }
             }
           }
