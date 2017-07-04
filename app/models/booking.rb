@@ -1,6 +1,6 @@
 class Booking < ApplicationRecord
   belongs_to :rental
-  belongs_to :user
+  belongs_to :user, optional: true
 
   validates :start_at, :end_at, :client_email, :price, :rental_id, presence: true
   validates_email_format_of :client_email, :message => 'is not a valid email'
